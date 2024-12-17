@@ -1,0 +1,45 @@
+<div class="container-fluid padl-0">
+  <div class="row h-100">
+    <div class="col-md-4 col-xxl-8">
+      <div class="bg-gradient">
+        <h1 class="text-light fs-2 px-5 py-4">
+          InvestTrack
+        </h1>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-xxl-4 px-5">
+      <div class="d-flex justify-content-center h-100">
+        <div class="pt-5 py-2">
+          <div class="d-flex justify-content-center">
+            <button
+              class="btn fs-2 border-3 pb-2
+                border-top-0 border-end-0 border-start-0 rounded-0
+                border-secondary
+                b-login-width border-bottom-5"
+              (click)="loginService.toggleAuthTab('login')"
+              [ngClass]="{'border-info': loginService.toggleAuthTab$() == 'login','text-info': loginService.toggleAuthTab$() == 'login'}"
+              >
+              Login
+            </button>
+            <button
+              class="btn fs-2 border-3 pb-2
+              border-top-0 border-end-0 border-start-0 rounded-0
+              border-secondary
+              b-create-width border-bottom-5"
+              (click)="loginService.toggleAuthTab('create')"
+              [ngClass]="{'border-info': loginService.toggleAuthTab$() == 'create','text-info': loginService.toggleAuthTab$() == 'create'}">
+              Criar conta
+            </button>
+          </div>
+          <div>
+            @if(loginService.toggleAuthTab$() == 'login') {
+              <app-login-form></app-login-form>
+            }@else {
+              <app-create-form></app-create-form>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

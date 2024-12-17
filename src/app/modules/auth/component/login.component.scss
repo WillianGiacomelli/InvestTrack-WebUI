@@ -1,0 +1,41 @@
+.bg-gradient{
+  background-color: #0093E9 !important;
+  background-image: linear-gradient(2deg, #0093E9 0%, #80D0C7 100%) !important;
+  height: 100vh;
+
+  @media screen and (max-width: 768px) {
+    height: 80px;
+    width: 100% !important;
+  }
+}
+
+.container-login{
+  width: 550px !important;
+}
+
+.b-login-width,
+.b-create-width{
+  word-break:keep-all;
+  width: 200px;
+  color:#6b6b6b;
+
+  @media screen and (max-width: 1660px) {
+    width: 200px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 200px;
+  }
+
+  @media screen and (max-width: 468px) {
+    width: 180px;
+  }
+
+  @media screen and (max-width: 418px) {
+    width: 150px;
+  }
+}
+
+.padl-0{
+  padding-left: 0px !important;
+}

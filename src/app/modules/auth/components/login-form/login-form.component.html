@@ -1,0 +1,28 @@
+<div class="pt-4">
+  <p class="fs-5">
+    InvestTrack, a melhor plataforma de gestão de investimentos em ações do Brasil.
+    Faça login para começar a gerenciar seus investimentos.
+  </p>
+  <div class="d-flex justify-content-center">
+    <form class="w-100" [formGroup]="loginForm" (ngSubmit)="handleLoginFormSubmit()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" formControlName="email" class="form-control py-2" id="email" autocomplete="username" placeholder="Email" required>
+        @if(loginForm.get('email')!.hasError('required') && loginForm.get('email')!.touched) {
+          <small class="text-danger">Campo obrigatório</small>
+        }
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Senha</label>
+        <input type="password" formControlName="password" class="form-control py-2" placeholder="Senha" autocomplete="current-password" id="password"required>
+        @if(loginForm.get('password')!.hasError('required') && loginForm.get('password')!.touched) {
+          <small class="text-danger">Campo obrigatório</small>
+        }
+      </div>
+      <a class="link-offset-2 link-underline link-underline-opacity-0">Esqueci a senha</a>
+      <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary w-100 py-3 btn-color mt-4">Fazer Login</button>
+    </form>
+  </div>
+</div>
+
+

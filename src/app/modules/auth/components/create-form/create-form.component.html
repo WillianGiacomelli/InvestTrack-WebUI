@@ -1,0 +1,66 @@
+<div class="pt-4">
+  <p class="fs-5">
+    InvestTrack, a melhor plataforma de gestão de investimentos em ações do Brasil.
+    Faça seu cadastro para começar a gerenciar seus investimentos.
+  </p>
+  <div class="d-flex justify-content-center">
+    <form class="w-100" [formGroup]="createModel" (ngSubmit)="handleCreateLoginSubmit()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nome</label>
+        <input type="name" class="form-control py-2" id="name" autocomplete="name" formControlName="name" required>
+        @if(createModel.get('name')!.hasError('required') && createModel.get('name')!.touched) {
+          <small class="text-danger">Campo obrigatório</small>
+        }
+      </div>
+      <div class="mb-3">
+        <label for="cpf" class="form-label">CPF</label>
+        <input type="cpf" class="form-control py-2" id="cpf" autocomplete="cpf" formControlName="cpf" required>
+        @if(createModel.get('cpf')!.hasError('required') && createModel.get('cpf')!.touched) {
+          <small class="text-danger">Campo obrigatório</small>
+        }
+      </div>
+      <div class="mb-3">
+        <label for="cpf" class="form-label">Data de Nascimento</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary w-100 h-100" type="button" (click)="d.toggle()">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+                  <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+                  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                </svg>
+              </div>
+            </button>
+          </div>
+          <input
+            class="form-control"
+            id="birthDate"
+            formControlName="birthDate"
+            ngbDatepicker
+            #d="ngbDatepicker"
+            (dateSelect)="onDateSelect($event)"
+            placeholder="Selecione uma data"
+          />
+        </div>
+        @if(createModel.get('birthDate')!.hasError('required') && createModel.get('birthDate')!.touched) {
+          <small class="text-danger">Campo obrigatório</small>
+        }
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control py-2" id="email" autocomplete="email" formControlName="email" required>
+        @if(createModel.get('email')!.hasError('required') && createModel.get('email')!.touched) {
+          <small class="text-danger">Campo obrigatório</small>
+        }
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Senha</label>
+        <input type="password" class="form-control py-2" id="password" autocomplete="current-password" formControlName="password" required>
+        @if(createModel.get('password')!.hasError('required') && createModel.get('password')!.touched) {
+          <small class="text-danger">Campo obrigatório</small>
+        }
+      </div>
+      <button type="submit" [disabled]="!createModel.valid" class="btn btn-primary w-100 py-3 btn-color mt-4">Criar Conta</button>
+    </form>
+  </div>
+</div>
