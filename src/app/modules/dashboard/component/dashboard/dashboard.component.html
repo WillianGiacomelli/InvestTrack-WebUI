@@ -1,6 +1,6 @@
 <div class="container-fluid padl-0">
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-12 col-md-3">
       <div class="bg-gradient d-block justify-content-center align-items-center px-5 py-4">
         <h1 class="text-light fs-2 w-100 text-center">
           InvestTrack
@@ -30,8 +30,12 @@
         </div>
       </div>
     </div>
-    <div class="col-md-10">
-
+    <div class="col-12 col-md-9 px-5 py-4">
+      @if(dashboardBehaviorService.toggleDashboardTab$() == 'wallet'){
+        <app-wallet/>
+      }@else {
+        <app-transactions />
+      }
     </div>
   </div>
 </div>

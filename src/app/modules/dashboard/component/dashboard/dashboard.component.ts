@@ -7,7 +7,7 @@ import { DashboardBehaviorService } from '../../services/dashboardBehavior.servi
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-
+  public isMenuCollapsed: boolean = true;
   constructor(
     public dashboardBehaviorService: DashboardBehaviorService
   ) { }

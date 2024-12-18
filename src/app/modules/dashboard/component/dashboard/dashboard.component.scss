@@ -4,11 +4,16 @@
   height: 100vh;
 
   @media screen and (max-width: 768px) {
-    height: 80px;
-    width: 100% !important;
+    height: 40vh;
   }
 }
 
 .padl-0{
+  overflow-x: hidden;
   padding-left: 0px !important;
+  padding-right: 0px !important;
+
+  @media screen and (max-width: 968px) {
+    padding-right: 0px !important;
+  }
 }

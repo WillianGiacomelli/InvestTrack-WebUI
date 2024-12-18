@@ -4,7 +4,6 @@ import { environment } from '../../../../environments/environment';
 import { SignInUserRequest, SignUpUserRequest, SignUpUserResponse } from '../../../core/models/models';
 import { Observable } from 'rxjs';
 import { SignInUserResponse } from '../../../core/models/auth/SignInUserResponse';
-import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
