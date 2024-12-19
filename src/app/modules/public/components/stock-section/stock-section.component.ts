@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StockApiHttpService } from '../../services/stock.api.http.service';
+import { StockQuote } from '../../../../core/models/quote/stock/StockQuote';
+import { ApiResponse } from '../../../../core/models/response/ApiResponse';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-stock-section',
@@ -7,15 +10,35 @@ import { StockApiHttpService } from '../../services/stock.api.http.service';
   styleUrls: ['./stock-section.component.scss']
 })
 export class StockSectionComponent implements OnInit {
+  stockAscCloseQuote: StockQuote[] = [];
+  isLoadingStocks: boolean = false;
 
   constructor(
-    private _stockHttpService: StockApiHttpService
+    private _stockHttpService: StockApiHttpService,
+      private toastService: ToastrService,
   ) { }
 
   ngOnInit() {
-    this._stockHttpService.getStocks().subscribe((res:any) => {
-      console.log(res);
-    })
+    this.getStocks();
   }
 
+  private getStocks() {
+    this.isLoadingStocks = true;
+    this._stockHttpService.getStocks()
+      .subscribe({
+        next: (res: any) => {
+          if (res.data && res.data.length > 0) {
+            this.stockAscCloseQuote = res.data[0];
+          }
+        },
+        complete: () => {
+          this.isLoadingStocks = false;
+        },
+        error: (error) => {
+          this.toastService.error(error.error.message, 'Erro',{
+            progressBar: true,
+          });
+        }
+      });
+  }
 }

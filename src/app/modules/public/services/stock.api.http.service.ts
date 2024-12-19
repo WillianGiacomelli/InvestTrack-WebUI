@@ -1,26 +1,23 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
+import { ApiResponse } from '../../../core/models/response/ApiResponse';
+import { StockQuote } from '../../../core/models/quote/stock/StockQuote';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StockApiHttpService {
-  private BASE_API_URL:string = 'https://brapi.dev/api';
+  private BASE_API_URL:string = environment.API_URL;
 
-  private API_KEY:string = environment.BRAPI_TOKEN;
-
-  private API_URL = `${this.BASE_API_URL}/quote/list?type=stock&sortBy=change&sortOrder=asc&limit=10`;
+  private API_URL = `${this.BASE_API_URL}/stock/quote`;
 
   constructor(
     private _http: HttpClient,
   ) { }
 
-  getStocks(): any {
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.API_KEY}`,
-      'Content-Type': 'application/json'
-    });
-    return this._http.get(this.API_URL, { headers });
+  public getStocks(): Observable<ApiResponse<StockQuote>> {
+    return this._http.get<ApiResponse<StockQuote>>(this.API_URL);
   }
 }
