@@ -12,6 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 export class StockSectionComponent implements OnInit {
   stockAscCloseQuote: StockQuote[] = [];
   stockDescCloseQuote: StockQuote[] = [];
+  fundDescCloseQuote: StockQuote[] = [];
+  fundAscCloseQuote: StockQuote[] = [];
   isLoadingStocks: boolean = false;
 
   constructor(
@@ -29,8 +31,10 @@ export class StockSectionComponent implements OnInit {
       .subscribe({
         next: (res: any) => {
           if (res.data && res.data.length > 0) {
-            this.stockAscCloseQuote = res.data[0].higher;
-            this.stockDescCloseQuote = res.data[0].lower;
+            this.stockAscCloseQuote = res.data[0].stocks.higher;
+            this.stockDescCloseQuote = res.data[0].stocks.lower;
+            this.fundAscCloseQuote = res.data[0].funds.higher;
+            this.fundDescCloseQuote = res.data[0].funds.lower;
           }
         },
         complete: () => {

@@ -6,6 +6,7 @@ import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { MainSectionComponent } from './components/main-section/main-section.component';
 import { StockSectionComponent } from './components/stock-section/stock-section.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { AssetItemComponent } from './components/asset-item/asset-item.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     PublicComponent,
     NavbarComponent,
     MainSectionComponent,
-    StockSectionComponent
+    StockSectionComponent,
+    AssetItemComponent
   ],
 })
 export class PublicModule { }
