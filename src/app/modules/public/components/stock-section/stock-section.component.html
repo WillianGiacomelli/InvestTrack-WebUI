@@ -8,13 +8,32 @@
           <ul class="list-group list-group-flush d-flex ">
             @if(!isLoadingStocks){
                 @for(stock of stockAscCloseQuote; track stock.stock){
-                  <li class="list-group-item">
-                    <img src="{{stock.logo}}" alt="" class="image-stock">
-                    {{stock.stock}}
+                  <li class="list-group-item py-3 d-flex align-items-center gap-3">
+                    <div>
+                      <img src="{{stock.logo}}" alt="" class="image-stock">
+                    </div>
+                    <div class="d-flex flex-column gap-1 w-100">
+                      <div>
+                        <span class="m-1">{{stock.stock}}</span>
+                        <span>{{stock.name}}</span>
+                      </div>
+                      <div class="d-flex align-items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                        </svg>
+                        <span class="align-center">{{stock.change.toFixed(2).replace(".",",")}}</span>%
+                      </div>
+                    </div>
+                    <div class="price">
+                      <span class="m-1">R${{stock.close.toFixed(2).replace(".",",")}}</span>
+                    </div>
                   </li>
                 }
             }@else {
-              <li class="list-group-item">Carregando...</li>
+              <ngx-skeleton-loader
+                count="5"
+                [theme]="{ 'border-radius': '0', height: '50px' }">
+              </ngx-skeleton-loader>
             }
           </ul>
         </div>
@@ -24,10 +43,9 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title text-center mb-5">Maiores Baixas</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
+          <ul class="list-group list-group-flush d-flex ">
+
+          </ul>
         </div>
       </div>
     </div>

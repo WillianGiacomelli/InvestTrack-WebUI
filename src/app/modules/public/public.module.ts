@@ -5,17 +5,19 @@ import { PublicRoutes } from './public.routing';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { MainSectionComponent } from './components/main-section/main-section.component';
 import { StockSectionComponent } from './components/stock-section/stock-section.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   imports: [
     CommonModule,
-    PublicRoutes
+    PublicRoutes,
+    NgxSkeletonLoaderModule
   ],
   declarations: [
     PublicComponent,
     NavbarComponent,
     MainSectionComponent,
     StockSectionComponent
-  ]
+  ],
 })
 export class PublicModule { }
