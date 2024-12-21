@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StockApiHttpService } from '../../services/stock.api.http.service';
-import { StockQuote } from '../../../../core/models/quote/stock/StockQuote';
-import { ApiResponse } from '../../../../core/models/response/ApiResponse';
+import { StockApiHttpService } from '../../../services/stock.api.http.service';
+import { StockQuote } from '../../../../../core/models/quote/stock/StockQuote';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -14,6 +13,8 @@ export class StockSectionComponent implements OnInit {
   stockDescCloseQuote: StockQuote[] = [];
   fundDescCloseQuote: StockQuote[] = [];
   fundAscCloseQuote: StockQuote[] = [];
+  cryptoCloseQuote: any[] = [];
+  groupedCryptos: any[][] = [];
   isLoadingStocks: boolean = false;
 
   constructor(
@@ -35,6 +36,9 @@ export class StockSectionComponent implements OnInit {
             this.stockDescCloseQuote = res.data[0].stocks.lower;
             this.fundAscCloseQuote = res.data[0].funds.higher;
             this.fundDescCloseQuote = res.data[0].funds.lower;
+            this.cryptoCloseQuote = res.data[0].cryptos
+            this.groupedCryptos = this.groupCryptos(this.cryptoCloseQuote, 5);
+            console.log(this.groupedCryptos);
           }
         },
         complete: () => {
@@ -46,5 +50,13 @@ export class StockSectionComponent implements OnInit {
           });
         }
       });
+  }
+
+  private groupCryptos(cryptos: any[], itemsPerGroup: number): any[][] {
+    const groups: any[][] = [];
+    for (let i = 0; i < cryptos.length; i += itemsPerGroup) {
+      groups.push(cryptos.slice(i, i + itemsPerGroup));
+    }
+    return groups;
   }
 }

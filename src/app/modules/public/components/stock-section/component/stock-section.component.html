@@ -1,0 +1,93 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-5">Ações</h1>
+  <div class="row">
+    <div class="col-sm-12 col-md-6 mb-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-5">Maiores Altas</h5>
+          <ul class="list-group list-group-flush d-flex ">
+            <app-asset-item [assets]="stockAscCloseQuote" [isLoading]="isLoadingStocks"/>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class=" col-sm-12 col-md-6 mb-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-5">Maiores Baixas</h5>
+          <ul class="list-group list-group-flush d-flex ">
+            <app-asset-item [assets]="stockDescCloseQuote" [isLoading]="isLoadingStocks" [isUp]="false"/>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1 class="text-center mb-5">Fundos Imobiliários</h1>
+  <div class="row">
+    <div class="col-sm-12 col-md-6 mb-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-5">Maiores Altas</h5>
+          <ul class="list-group list-group-flush d-flex ">
+            <app-asset-item [assets]="fundAscCloseQuote" [isLoading]="isLoadingStocks"/>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class=" col-sm-12 col-md-6 mb-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-5">Maiores Baixas</h5>
+          <ul class="list-group list-group-flush d-flex ">
+            <app-asset-item [assets]="fundDescCloseQuote" [isLoading]="isLoadingStocks" [isUp]="false"/>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1 class="text-center mb-5">Criptomoedas</h1>
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex justify-content-around flex-wrap w-100">
+         @for(column of groupedCryptos; track column[0].id){
+          <div class="d-flex flex-column flex-grow-1">
+            <ul class="list-group">
+              @for(crypto of column; track crypto.id){
+                <li class="list-group-item py-3">
+                  <div class="d-flex align-items-center">
+                    <img
+                      [src]="'https://s2.coinmarketcap.com/static/img/coins/64x64/' + crypto.id + '.png'"
+                      alt="{{ crypto.name }}"
+                      class="me-3"
+                      width="32"
+                      height="32"
+                    />
+
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                      <div>
+                        <strong>{{ crypto.symbol }}</strong> {{ crypto.name }}<br />
+                        @if(crypto.quote.BRL.percent_change_24h >= 0){
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+                          </svg>
+                        }@else {
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+                          </svg>
+                        }
+                        {{ crypto.quote.BRL.percent_change_24h | number: '1.2-2' }}%
+                      </div>
+                      <div class="text-muted justify-self-end">
+                        <p>R$ {{ crypto.quote.BRL.price | number: '1.2-2' }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              }
+            </ul>
+          </div>
+         }
+      </div>
+    </div>
+  </div>
+</div>

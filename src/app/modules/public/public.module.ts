@@ -1,12 +1,14 @@
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PublicComponent } from './component/public/public.component';
 import { PublicRoutes } from './public.routing';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { MainSectionComponent } from './components/main-section/main-section.component';
-import { StockSectionComponent } from './components/stock-section/stock-section.component';
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { AssetItemComponent } from './components/asset-item/asset-item.component';
+import { StockSectionComponent } from './components/stock-section/component/stock-section.component';
+import { AssetItemComponent } from './components/stock-section/components/asset-item/asset-item.component';
+import { FooterComponent } from './components/footer/footer.component';
+
 
 @NgModule({
   imports: [
@@ -19,7 +21,8 @@ import { AssetItemComponent } from './components/asset-item/asset-item.component
     NavbarComponent,
     MainSectionComponent,
     StockSectionComponent,
-    AssetItemComponent
+    AssetItemComponent,
+    FooterComponent
   ],
 })
 export class PublicModule { }
