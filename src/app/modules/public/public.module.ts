@@ -8,6 +8,7 @@ import { MainSectionComponent } from './components/main-section/main-section.com
 import { StockSectionComponent } from './components/stock-section/component/stock-section.component';
 import { AssetItemComponent } from './components/stock-section/components/asset-item/asset-item.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CryptoItemComponent } from './components/stock-section/components/crypto-item/crypto-item.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FooterComponent } from './components/footer/footer.component';
     MainSectionComponent,
     StockSectionComponent,
     AssetItemComponent,
-    FooterComponent
+    FooterComponent,
+    CryptoItemComponent
   ],
 })
 export class PublicModule { }
