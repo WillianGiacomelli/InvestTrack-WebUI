@@ -8,3 +8,20 @@
   background-color: #80D0C7;
   color: white;
 }
+
+.navbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  transition: background-color 0.3s ease;
+  background-color: transparent !important;
+  @media screen and (max-width: 768px) {
+    background-color: #0093E9 !important;
+  }
+}
+
+.navbar.navbar-scrolled{
+  background-color: #0093E9 !important;
+}

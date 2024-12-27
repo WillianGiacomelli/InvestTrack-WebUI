@@ -6,6 +6,11 @@
 li{
   border-left: none !important;
   border-right: none !important;
+
+  @media screen and (max-width: 768px) {
+    flex-wrap: wrap;
+
+  }
 }
 
 .list-group-item:first-child {

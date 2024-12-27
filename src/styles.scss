@@ -1,9 +1,51 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+:root {
+  --background-color: #f8f9fa;
+  --text-color: #333;
+  --primary-color: #007bff;
+  --nav-link-color: #333;
+  --nav-link-hover-color: #007bff;
+  --card-bg-color: #fff;
+}
+
+:root.dark-theme {
+  --background-color: #313131;
+  --text-color: #ffffff;
+  --primary-color: #1e88e5;
+  --nav-link-color: #ffffff;
+  --nav-link-hover-color: #1e88e5;
+  --card-bg-color: #424242;
+}
+
 body{
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     line-height: 1.5;
-    color: #333;
-    background-color: #f8f9fa;
+    background-color: var(--background-color);
+    color: var(--text-color) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link {
+  color: var(--nav-link-color) !important;
+  transition: color 0.3s ease;
+}
+
+.card-body{
+  color: var(--text-color) !important;
+  background-color: var(--card-bg-color);
+}
+
+.list-group-item{
+  color: var(--text-color) !important;
+  background-color: var(--card-bg-color);
+}
+
+.navbar-brand{
+  color: var(--nav-link-color) !important;
+}
+
+.nav-link:hover {
+  color: var(--nav-link-hover-color) !important;
 }
