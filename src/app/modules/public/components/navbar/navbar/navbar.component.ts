@@ -1,3 +1,4 @@
+import { UserAuthenticationService } from './../../../../../shared/services/userAuthentication.service';
 import { ThemeService } from './../../../services/theme.service';
 import { Component, HostListener, OnInit } from '@angular/core';
 
@@ -10,7 +11,10 @@ export class NavbarComponent implements OnInit {
   isScrolled: boolean = false;
   isDarkTheme: boolean = false;
 
-  constructor(public themeService:ThemeService) {
+  constructor(
+    public themeService:ThemeService,
+    public userAuthenticationService: UserAuthenticationService
+  ) {
     this.isDarkTheme = this.themeService.isDarkTheme();
   }
 
@@ -20,6 +24,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userAuthenticationService.isUserAuthenticated
   }
 
   toggleTheme(): void {

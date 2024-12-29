@@ -40,7 +40,6 @@ export class ResetPasswordComponent implements OnInit {
   ngOnInit() {
     this._route.queryParams.subscribe(params => {
       this.token = params['token'] || '';
-      console.log(this.token);
       if (!this.token) {
         this._toastService.error('Token não encontrado. Certifique-se de acessar o link correto.', 'Erro',{
           progressBar: true,
@@ -56,7 +55,6 @@ export class ResetPasswordComponent implements OnInit {
         .resetPassword(this.resetPasswordForm.get('confirmPassword')?.value, this.token)
         .subscribe({
           next: (response: any) => {
-            console.log(response);
           },
           complete: () => {
             this.isLoading = false;

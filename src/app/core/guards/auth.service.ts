@@ -18,8 +18,6 @@ export class AuthService {
   public getTokenExpirationDate(token: string): Date | null{
     const decoded = jwt_decode.jwtDecode(token);
 
-    console.log(decoded)
-
     if (decoded.exp === undefined)
       return null;
 
@@ -31,7 +29,6 @@ export class AuthService {
   public isTokenExpired(token?: string | null): boolean {
     const date = this.getTokenExpirationDate(token!);
     if(!date) return false;
-    console.log(date.valueOf(), new Date().valueOf())
     return !(date.valueOf() > new Date().valueOf());
   }
 

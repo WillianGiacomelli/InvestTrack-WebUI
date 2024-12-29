@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthBehaviorService } from '../../services/authBehavior.service';
+import { UserAuthenticationService } from '../../../../shared/services/userAuthentication.service';
 
 @Component({
   selector: 'app-login-form',
@@ -22,7 +23,8 @@ export class LoginFormComponent implements OnInit {
     private _authHttpService: AuthHttpService,
     private _cookieService: CookieService,
     private _router: Router,
-    private toastService: ToastrService
+    private toastService: ToastrService,
+    private _userAuthenticated: UserAuthenticationService
   ) { }
 
   ngOnInit() {
@@ -39,6 +41,8 @@ export class LoginFormComponent implements OnInit {
         next: (response: SignInUserResponse) => {
           if(response){
             this._cookieService.set('token', response?.auth.token);
+            this._userAuthenticated.setIsUserAuthenticated(true);
+            this._userAuthenticated.setUserAuthenticated(response.auth);
             this.loginForm.reset();
             this._router.navigate(['dashboard']);
           }

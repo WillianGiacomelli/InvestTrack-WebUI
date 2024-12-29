@@ -17,7 +17,16 @@
         </li>
 
         <li class="nav-item d-lg-none">
+        @if (userAuthenticationService.isUserAuthenticated){
+          <a routerLink="/dashboard">
+            <button class="btn btn-personalized">
+              <i class="bi bi-person pe-1"></i>
+              {{userAuthenticationService.getUserAuthenticated.name}}
+            </button>
+          </a>
+        } @else {
           <a routerLink="/auth"><button class="btn btn-personalized w-100 my-2">Login</button></a>
+        }
         </li>
       </ul>
     </div>
@@ -33,7 +42,16 @@
         />
         <span class="mx-2">Dark</span>
       </div>
-      <a routerLink="/auth"><button class="btn btn-personalized">Login</button></a>
+      @if (userAuthenticationService.isUserAuthenticated){
+        <a routerLink="/dashboard">
+          <button class="btn btn-personalized">
+            <i class="bi bi-person pe-1"></i>
+            {{userAuthenticationService.getUserAuthenticated.name}}
+          </button>
+        </a>
+      } @else {
+        <a routerLink="/auth"><button class="btn btn-personalized">Login</button></a>
+      }
     </div>
   </div>
 </nav>

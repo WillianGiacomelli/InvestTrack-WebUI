@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DashboardBehaviorService } from '../../services/dashboardBehavior.service';
+import { UserAuthenticationService } from '../../../../shared/services/userAuthentication.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,10 +10,15 @@ import { DashboardBehaviorService } from '../../services/dashboardBehavior.servi
 export class DashboardComponent {
   public isMenuCollapsed: boolean = true;
   constructor(
-    public dashboardBehaviorService: DashboardBehaviorService
+    public dashboardBehaviorService: DashboardBehaviorService,
+    private userAuthenticationService: UserAuthenticationService
   ) { }
 
   ngOnInit() {
+  }
+
+  public logout(): void {
+    this.userAuthenticationService.logout();
   }
 
 }

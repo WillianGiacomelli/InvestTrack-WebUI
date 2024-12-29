@@ -38,7 +38,6 @@ export class StockSectionComponent implements OnInit {
             this.fundDescCloseQuote = res.data[0].funds.lower;
             this.cryptoCloseQuote = res.data[0].cryptos
             this.groupedCryptos = this.groupCryptos(this.cryptoCloseQuote, 5);
-            console.log(this.groupedCryptos);
           }
         },
         complete: () => {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserAuthenticationService } from '../../../../shared/services/userAuthentication.service';
 
 @Component({
   selector: 'app-public',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _userAuthenticationService: UserAuthenticationService
+  ) { }
 
   ngOnInit() {
   }

@@ -15,6 +15,10 @@ export class AuthHttpService {
     private _http: HttpClient,
   ) { }
 
+  public checkToken(token: string): Observable<any> {
+    return this._http.get(`${this._API_URL}/auth/check-token?token=${token}`,);
+  }
+
   public SignUpUser(user: SignUpUserRequest) : Observable<SignUpUserResponse>{
     return this._http.post<SignUpUserResponse>(`${this._API_URL}/user`, user);
   }
