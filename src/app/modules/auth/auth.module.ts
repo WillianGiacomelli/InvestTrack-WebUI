@@ -9,6 +9,7 @@ import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ToastrModule } from 'ngx-toastr';
 import { CpfPipe } from '../../core/pipes/cpf.pipe';
+import { ResetPasswordComponent } from './components/reset-password-form/reset-password/reset-password.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { CpfPipe } from '../../core/pipes/cpf.pipe';
   declarations: [
     LoginComponent,
     LoginFormComponent,
+    ResetPasswordComponent,
     CreateFormComponent,
     CpfPipe
   ],

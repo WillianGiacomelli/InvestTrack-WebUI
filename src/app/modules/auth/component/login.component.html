@@ -34,8 +34,10 @@
           <div>
             @if(loginService.toggleAuthTab$() == 'login') {
               <app-login-form></app-login-form>
-            }@else {
+            }@else if(loginService.toggleAuthTab$() == 'create') {
               <app-create-form></app-create-form>
+            }@else if(loginService.toggleAuthTab$() == 'reset-password') {
+              <app-reset-password />
             }
           </div>
         </div>

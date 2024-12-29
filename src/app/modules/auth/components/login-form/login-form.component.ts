@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthBehaviorService } from '../../services/authBehavior.service';
 
 @Component({
   selector: 'app-login-form',
@@ -16,6 +17,7 @@ export class LoginFormComponent implements OnInit {
   public loginForm!: FormGroup;
 
   constructor(
+    public loginService:AuthBehaviorService,
     private _formBuilder: FormBuilder,
     private _authHttpService: AuthHttpService,
     private _cookieService: CookieService,

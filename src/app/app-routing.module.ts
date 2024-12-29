@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./modules/reset-password/reset-password.module').then(m => m.ResetPasswordModule),
   }
 ];
 

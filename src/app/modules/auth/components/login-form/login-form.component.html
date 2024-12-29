@@ -19,7 +19,7 @@
           <small class="text-danger">Campo obrigatório</small>
         }
       </div>
-      <a class="link-offset-2 link-underline link-underline-opacity-0">Esqueci a senha</a>
+      <a class="link-offset-2 link-underline link-underline-opacity-0" (click)="loginService.toggleAuthTab('reset-password')">Esqueci a senha</a>
       <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary w-100 py-3 btn-color mt-4">Fazer Login</button>
     </form>
   </div>

@@ -7,6 +7,7 @@
   --nav-link-color: #333;
   --nav-link-hover-color: #007bff;
   --card-bg-color: #fff;
+  --skeleton-bg-color: linear-gradient(90deg, #fff0, #fff9, #fff0);
 }
 
 :root.dark-theme {
@@ -16,6 +17,7 @@
   --nav-link-color: #ffffff;
   --nav-link-hover-color: #1e88e5;
   --card-bg-color: #424242;
+
 }
 
 body{
@@ -48,4 +50,8 @@ body{
 
 .nav-link:hover {
   color: var(--nav-link-hover-color) !important;
+}
+
+.skeleton-loader.progress:before {
+  background-image: var(--skeleton-bg-color);
 }

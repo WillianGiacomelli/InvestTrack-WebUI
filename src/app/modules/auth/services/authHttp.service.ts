@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { SignInUserRequest, SignUpUserRequest, SignUpUserResponse } from '../../../core/models/models';
@@ -21,5 +21,21 @@ export class AuthHttpService {
 
   public SignInUser(user: SignInUserRequest) : Observable<SignInUserResponse>{
     return this._http.post<SignInUserResponse>(`${this._API_URL}/auth`, user);
+  }
+
+  public ResetPasswordRequest(email: string): Observable<any>{
+    return this._http.post(`${this._API_URL}/auth/reset-password-request`, {email});
+  }
+
+  public resetPassword(password: string, token: string): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this._http.post(
+      `${this._API_URL}/auth/reset-password`,
+      { password, token },
+      { headers }
+    );
   }
 }
