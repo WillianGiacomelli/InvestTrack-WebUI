@@ -7,13 +7,15 @@ import { NgbCalendar, NgbCollapseModule, NgbDatepickerModule } from '@ng-bootstr
 import { WalletComponent } from './components/wallet/component/wallet.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     WalletComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,

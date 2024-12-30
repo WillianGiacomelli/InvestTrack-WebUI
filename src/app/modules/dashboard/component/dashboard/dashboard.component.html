@@ -1,35 +1,7 @@
 <div class="container-fluid padl-0">
   <div class="row">
     <div class="col-12 col-md-3">
-      <div class="bg-gradient d-flex flex-column align-items-center px-5 py-4 ">
-        <h1 class="text-light fs-2 w-100 text-center">
-          InvestTrack
-        </h1>
-        <div class="menu mt-5">
-          <button
-              class="btn fs-5 border-3 pb-2 d-flex justify-content-center align-items-center gap-2 text-light w-100
-              border-top-0 border-end-0 border-start-0 border-bottom-5 rounded-0  border-light"
-              (click)="dashboardBehaviorService.toggleDashboardTab('wallet')"
-              [ngClass]="{'border-bottom-0': dashboardBehaviorService.toggleDashboardTab$() != 'wallet'}">
-              <i class="bi bi-wallet2"></i>
-              Carteira
-          </button>
-          <button
-                class="btn mt-5 fs-5 border-3 pb-2 d-flex justify-content-center align-items-center gap-2 text-light w-100
-                border-top-0 border-end-0 border-start-0 border-bottom-5 rounded-0  border-light"
-                (click)="dashboardBehaviorService.toggleDashboardTab('transactions')"
-                [ngClass]="{'border-bottom-0': dashboardBehaviorService.toggleDashboardTab$() != 'transactions'}">
-                <i class="bi bi-cash-stack"></i>
-                Transações
-          </button>
-        </div>
-        <div class="mt-auto">
-          <a routerLink="" (click)="logout()" class="text-light fs-5">
-              <i class="bi bi-box-arrow-right"></i>
-              Sair
-          </a>
-        </div>
-      </div>
+      <app-navbar />
     </div>
     <div class="col-12 col-md-9 px-5 py-4">
       @if(dashboardBehaviorService.toggleDashboardTab$() == 'wallet'){
