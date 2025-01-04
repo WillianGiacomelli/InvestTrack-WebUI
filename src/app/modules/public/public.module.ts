@@ -9,6 +9,7 @@ import { StockSectionComponent } from './components/stock-section/component/stoc
 import { AssetItemComponent } from './components/stock-section/components/asset-item/asset-item.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CryptoItemComponent } from './components/stock-section/components/crypto-item/crypto-item.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { CryptoItemComponent } from './components/stock-section/components/crypt
     StockSectionComponent,
     AssetItemComponent,
     FooterComponent,
-    CryptoItemComponent
+    CryptoItemComponent,
+    NotFoundComponent
   ],
 })
 export class PublicModule { }
