@@ -11,7 +11,7 @@ export class DashboardComponent {
   public isMenuCollapsed: boolean = true;
   constructor(
     public dashboardBehaviorService: DashboardBehaviorService,
-    private userAuthenticationService: UserAuthenticationService
+    public userAuthenticationService: UserAuthenticationService
   ) { }
 
   ngOnInit() {

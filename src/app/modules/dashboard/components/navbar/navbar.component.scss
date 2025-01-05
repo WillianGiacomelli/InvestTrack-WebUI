@@ -15,3 +15,11 @@ a{
 .navbar{
   background-color: #0093E9 !important;
 }
+
+.ps-fixed{
+  position: fixed;
+  top: 0;
+  width: 20%;
+  left: 0;
+  z-index: 1000;
+}

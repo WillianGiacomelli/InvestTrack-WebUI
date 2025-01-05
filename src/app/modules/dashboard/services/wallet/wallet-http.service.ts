@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../../environments/environment';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../../../../core/models/response/ApiResponse';
-import { Wallet } from '../../../../core/models/wallet/wallet';
+import { WalletResponse } from '../../../../core/models/wallet/response/walletResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,11 @@ export class WalletHttpService {
     private _http: HttpClient,
   ) { }
 
-  public getWallet(userId: number): Observable<ApiResponse<Wallet>> {
-    return this._http.get<ApiResponse<Wallet>>(`${this.API_URL}/wallet`, { params: { userId: userId.toString() } });
+  public getWallet(userId: number): Observable<ApiResponse<WalletResponse>> {
+    return this._http.get<ApiResponse<WalletResponse>>(`${this.API_URL}/wallet`, { params: { userId: userId.toString() } });
+  }
+
+  public postWallet(wallet: WalletResponse): Observable<ApiResponse<WalletResponse>> {
+    return this._http.post<ApiResponse<WalletResponse>>(`${this.API_URL}/wallet`, wallet);
   }
 }

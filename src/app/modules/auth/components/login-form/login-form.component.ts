@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthHttpService } from '../../services/authHttp.service';
 import { SignInUserRequest, SignInUserResponse } from '../../../../core/models/models';
-import Swal from 'sweetalert2'
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';

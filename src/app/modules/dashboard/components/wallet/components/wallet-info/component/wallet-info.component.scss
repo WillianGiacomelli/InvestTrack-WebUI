@@ -1,0 +1,14 @@
+.distribution{
+  width: 30%;
+  @media screen and (max-width: 968px) {
+    width: 100%;
+  }
+}
+
+.assets{
+  width: 70%;
+  @media screen and (max-width: 968px) {
+    width: 100%;
+  }
+}
+

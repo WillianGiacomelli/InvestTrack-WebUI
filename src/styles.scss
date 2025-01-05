@@ -20,6 +20,23 @@
 
 }
 
+a{
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.btn-personalized{
+  border: 1px solid #80D0C7;
+  color: #80D0C7;
+  font-weight: 600;
+}
+
+.btn-personalized:hover{
+  background-color: #80D0C7;
+  color: white;
+}
+
 body{
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
@@ -50,6 +67,11 @@ body{
 
 .nav-link:hover {
   color: var(--nav-link-hover-color) !important;
+}
+
+.modal-content {
+  background-color: var(--card-bg-color);
+  color: var(--text-color);
 }
 
 .skeleton-loader.progress:before {

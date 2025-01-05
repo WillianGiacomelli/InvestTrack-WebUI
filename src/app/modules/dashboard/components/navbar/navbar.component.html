@@ -1,4 +1,4 @@
-<div class="bg-gradient d-md-flex flex-column align-items-center px-5 py-4 d-none">
+<div class="bg-gradient d-md-flex flex-column align-items-center px-5 py-4 d-none ps-fixed">
   <h1 class="text-light fs-2 w-100 text-center">
     InvestTrack
   </h1>
@@ -30,9 +30,15 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light py-3 d-block d-md-none">
   <div class="container d-flex w-100 d-flex justify-content-between">
     <a class="navbar-brand text-light" href="#">INVESTTRACK</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="d-flex align-items-center gap-3">
+      <button class="btn btn-personalized">
+        <i class="bi bi-person pe-1"></i>
+        {{userAuthenticationService.getUserAuthenticated.name.split(' ')[0]}}
+      </button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
     <div class="collapse navbar-collapse justify-content-center align-items-center" id="navbar">
       <ul class="navbar-nav d-flex justify-content-center w-100 text-center gap-5">
         <li class="nav-item text-light mt-3"

@@ -1,5 +1,4 @@
-export class Wallet {
-  id!: number;
+export class WalletRequest {
   userId!: number;
   name!: string;
 }

@@ -4,8 +4,16 @@
       <app-navbar />
     </div>
     <div class="col-12 col-md-9 px-5 py-4">
+      <div class="d-flex d-none d-md-flex justify-content-end w-100 mb-5">
+        <button class="btn btn-personalized">
+          <i class="bi bi-person pe-1"></i>
+          {{userAuthenticationService.getUserAuthenticated.name.split(' ')[0]}}
+        </button>
+      </div>
       @if(dashboardBehaviorService.toggleDashboardTab$() == 'wallet'){
-        <app-wallet/>
+        <div class="overflow-y">
+          <app-wallet/>
+        </div>
       }@else {
         <app-transactions />
       }
