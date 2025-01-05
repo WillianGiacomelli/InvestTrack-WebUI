@@ -9,7 +9,9 @@ Este projeto é o frontend da aplicação **InvestTrack-API**, desenvolvido com 
 - **TypeScript**: Linguagem usada para o desenvolvimento do projeto.
 - **RxJS**: Biblioteca para programação reativa.
 - **Angular CLI**: Ferramenta de linha de comando para facilitar a construção e o gerenciamento de aplicações Angular.
-- **Bootstrap** (ou outro framework de UI): Para o design responsivo e componentes de interface.
+- **Bootstrap** Para o design responsivo e componentes de interface.
+- **SweetAlert2** Pop-ups elegantes e customizáveis.
+- **ngToast** Notificações em toasts.
 
 ## Requisitos
 
@@ -59,7 +61,7 @@ Para configurar a URL do backend no Angular, crie um arquivo `src/environments/e
 ```typescript
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000',  // URL do seu backend
+  apiUrl: 'http://localhost:3000',  // URL do backend
 };
 ```
 
