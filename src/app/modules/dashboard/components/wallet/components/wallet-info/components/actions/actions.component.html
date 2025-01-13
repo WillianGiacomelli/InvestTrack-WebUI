@@ -8,22 +8,149 @@
 
 <ng-template #content let-modal>
 	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Criar Carteira</h4>
+		<h4 class="modal-title" id="modal-basic-title">Adicionar Ativo</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
       <form class="w-100" [formGroup]="addAssetForm">
         <div class="mb-3">
-          <label for="text" class="form-label">Nome da carteira de investimentos</label>
-          <input type="text" formControlName="name" class="form-control py-2" id="name" placeholder="Nome" required>
-          @if(addAssetForm.get('name')!.hasError('required') && addAssetForm.get('name')!.touched) {
+            <label for="categoryId" class="form-label">Tipo de ativo</label>
+            <select
+              id="categoryId"
+              class="form-select"
+              formControlName="categoryId"
+              (change)="onCategoryChange($event)"
+              aria-label="Selecione o tipo de ativo"
+            >
+            <option value="" disabled selected>Selecione o tipo de ativo</option>
+            @for(categorie of investmentCategories; track categorie.id){
+                <option [value]="categorie.id">{{categorie.name}}</option>
+              }
+            </select>
+            @if(addAssetForm.get('categoryId')!.hasError('required') && addAssetForm.get('categoryId')!.touched) {
+              <small class="text-danger">Campo obrigatório</small>
+            }
+          </div>
+          @switch (investmentTypeSelected) {
+            @case (investmentType.Stocks) {
+              <div class="mb-3">
+                <label for="buyingPrice" class="form-label">Preço pago na ação</label>
+                <input type="text" formControlName="buyingPrice" class="form-control py-2" id="buyingPrice" placeholder="10,9" required>
+                @if(addAssetForm.get('buyingPrice')!.hasError('required') && addAssetForm.get('buyingPrice')!.touched) {
+                  <small class="text-danger">Campo obrigatório</small>
+                }
+              </div>
+              <div class="mb-3">
+                <label for="ticker" class="form-label">Ticker da ação</label>
+                <input type="text" formControlName="ticker" class="form-control py-2" id="ticker" placeholder="PETR4" required>
+                @if(addAssetForm.get('ticker')!.hasError('required') && addAssetForm.get('ticker')!.touched) {
+                  <small class="text-danger">Campo obrigatório</small>
+                }
+              </div>
+              <div class="mb-3">
+                <label for="amount" class="form-label">Quantidade</label>
+                <input type="text" formControlName="amount" class="form-control py-2" id="amount" placeholder="100" required>
+                @if(addAssetForm.get('amount')!.hasError('required') && addAssetForm.get('amount')!.touched) {
+                  <small class="text-danger">Campo obrigatório</small>
+                }
+              </div>
+            }
+            @case (investmentType.RealEstateFunds) {
+              <div class="mb-3">
+                <label for="buyingPrice" class="form-label">Preço pago no FII</label>
+                <input type="text" formControlName="buyingPrice" class="form-control py-2" id="buyingPrice" placeholder="1200" required>
+                @if(addAssetForm.get('buyingPrice')!.hasError('required') && addAssetForm.get('buyingPrice')!.touched) {
+                  <small class="text-danger">Campo obrigatório</small>
+                }
+              </div>
+              <div class="mb-3">
+                <label for="ticker" class="form-label">Ticker do FII</label>
+                <input type="text" formControlName="ticker" class="form-control py-2" id="ticker" placeholder="BTHF11" required>
+                @if(addAssetForm.get('ticker')!.hasError('required') && addAssetForm.get('ticker')!.touched) {
+                  <small class="text-danger">Campo obrigatório</small>
+                }
+              </div>
+              <div class="mb-3">
+                <label for="amount" class="form-label">Quantidade</label>
+                <input type="text" formControlName="amount" class="form-control py-2" id="amount" placeholder="10" required>
+                @if(addAssetForm.get('amount')!.hasError('required') && addAssetForm.get('amount')!.touched) {
+                  <small class="text-danger">Campo obrigatório</small>
+                }
+              </div>
+            }
+            @case (investmentType.Cryptocurrencies) {
+              <div class="mb-3">
+                <label for="buyingPrice" class="form-label">Preço da criptomoeda no momento da compra (em reais R$)</label>
+                <input type="text" formControlName="buyingPrice" class="form-control py-2" id="buyingPrice" placeholder="1200" required>
+                @if(addAssetForm.get('buyingPrice')!.hasError('required') && addAssetForm.get('buyingPrice')!.touched) {
+                  <small class="text-danger">Campo obrigatório</small>
+                }
+              </div>
+              <div class="mb-3">
+                <label for="ticker" class="form-label">Ticker da criptomoeda</label>
+                <input type="text" formControlName="ticker" class="form-control py-2" id="ticker" placeholder="BTC" required>
+                @if(addAssetForm.get('ticker')!.hasError('required') && addAssetForm.get('ticker')!.touched) {
+                  <small class="text-danger">Campo obrigatório</small>
+                }
+              </div>
+              <div class="mb-3">
+                <label for="amount" class="form-label">Quantidade/Frações</label>
+                <input type="text" formControlName="amount" class="form-control py-2" id="amount" placeholder="1 ou 0,026" required>
+                @if(addAssetForm.get('amount')!.hasError('required') && addAssetForm.get('amount')!.touched) {
+                  <small class="text-danger">Campo obrigatório</small>
+                }
+              </div>
+            }
+          }
+        <div class="mb-3">
+          <label for="brokerId" class="form-label">Corretora</label>
+          <select
+            id="brokerId"
+            class="form-select"
+            formControlName="brokerId"
+            (change)="onBrokerChange($event)"
+            aria-label="Selecione o tipo de ativo"
+          >
+          <option value="" disabled selected>Selecione a corretora</option>
+          @for(broker of investmentBrokers; track broker.id){
+              <option [value]="broker.id">{{broker.name}}</option>
+            }
+          </select>
+          @if(addAssetForm.get('brokerId')!.hasError('required') && addAssetForm.get('brokerId')!.touched) {
+            <small class="text-danger">Campo obrigatório</small>
+          }
+        </div>
+        <div class="mb-3">
+          <label for="lastTransaction" class="form-label">Data de compra</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary w-100 h-100" type="button" (click)="d.toggle()">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+                    <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                  </svg>
+                </div>
+              </button>
+            </div>
+            <input
+              class="form-control"
+              id="lastTransaction"
+              formControlName="lastTransaction"
+              ngbDatepicker
+              #d="ngbDatepicker"
+              (dateSelect)="onDateSelect($event)"
+              placeholder="Selecione uma data"
+            />
+          </div>
+          @if(addAssetForm.get('lastTransaction')!.hasError('required') && addAssetForm.get('lastTransaction')!.touched) {
             <small class="text-danger">Campo obrigatório</small>
           }
         </div>
 		</form>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-outline-secondary" [disabled]="!addAssetForm.valid" (click)="modal.close('Save click')">Criar</button>
+		<button type="button" class="btn btn-success" [disabled]="!addAssetForm.valid" (click)="modal.close('Save click')">Adicionar Ativo</button>
     <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cancel click')">Cancelar</button>
 	</div>
 </ng-template>

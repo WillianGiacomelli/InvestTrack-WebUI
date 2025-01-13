@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class WalletBehaviorService {
   private _isLoadingWallet: WritableSignal<boolean> = signal(true);
-  private _wallet: WritableSignal<WalletResponse | null> = signal(null);
+  private _wallet: WritableSignal<any | null> = signal(null);
   private _createdNewWallet: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
 
@@ -27,7 +27,7 @@ export class WalletBehaviorService {
     this._isLoadingWallet.set(isLoading);
   }
 
-  public getWallet(): WalletResponse | null {
+  public getWallet(): WalletResponse[] | null  {
     return this._wallet();
   }
 

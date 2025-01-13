@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { DashboardRoutes } from './dashboard.routing';
@@ -32,7 +32,8 @@ import { ActionsComponent } from './components/wallet/components/wallet-info/com
     NgbDatepickerModule,
     NgbCollapseModule,
     SharedModule,
-    NgxSkeletonLoaderModule
-  ]
+    NgxSkeletonLoaderModule,
+  ],
+  providers: [DatePipe]
 })
 export class DashboardModule { }

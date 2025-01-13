@@ -1,0 +1,17 @@
+export enum InvestmentCategoryEnum {
+  Stocks = 1,
+  RealEstateFunds = 2,
+  Cryptocurrencies = 3,
+  FixedIncome = 4,
+  TreasuryBonds = 5,
+  PrivatePension = 6,
+  InvestmentFunds = 7,
+  EquityFunds = 8,
+  MultimarketFunds = 9,
+  FixedIncomeFunds = 10,
+  CurrencyFunds = 11,
+  PensionFunds = 12,
+  DebentureFunds = 13,
+  ParticipationFunds = 14,
+  IndexFunds = 15,
+}
