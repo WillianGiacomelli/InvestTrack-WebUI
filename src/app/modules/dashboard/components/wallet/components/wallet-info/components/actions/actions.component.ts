@@ -22,7 +22,7 @@ export class ActionsComponent {
   public investmentCategories: InvestmentCategoryResponse[] = [];
   public investmentBrokers: InvestmentBrokerResponse[] = [];
   public investmentType: typeof InvestmentCategoryEnum = InvestmentCategoryEnum;
-  public investmentTypeSelected!: InvestmentCategoryEnum;
+  public investmentTypeSelected!: InvestmentCategoryEnum | null;
   private _modalService = inject(NgbModal);
   private _formBuilder: FormBuilder = inject(FormBuilder);
   private _userAuthenticationService: UserAuthenticationService = inject(UserAuthenticationService);
@@ -125,6 +125,8 @@ export class ActionsComponent {
     .subscribe({
       next: (res) => {
         // this._walletBehaviorService.setCreatedNewWallet(true);
+        this.addAssetForm.reset();
+        this.investmentTypeSelected = null;
         this._toastService.success('Ativo adicionado com sucesso.', 'Sucesso',{
           progressBar: true,
         });
