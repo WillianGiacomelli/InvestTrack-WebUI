@@ -4,3 +4,16 @@
     <li class="breadcrumb-item" aria-current="page">Transações</li>
   </ol>
 </nav>
+
+@if(isLoadingTransactions){
+  <div class="skeleton-loader">
+    <ngx-skeleton-loader
+      count="1"
+      [theme]="{ 'border-radius': '0', height: '80vh', width: '100%' }">
+    </ngx-skeleton-loader>
+  </div>
+}@else if(transactions.length > 0){
+  <app-list [transactions]="transactions"></app-list>
+}@else {
+  <app-empty-transactions />
+}

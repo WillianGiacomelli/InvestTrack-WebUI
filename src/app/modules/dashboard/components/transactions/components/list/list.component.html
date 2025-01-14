@@ -1,0 +1,35 @@
+<table class="table table-bordered table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th>Data da Transação</th>
+      <th>Preço individual</th>
+      <th>Quantidade</th>
+      <th>Total da transação</th>
+      <th>Modalidade</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(transaction of transactions; track transaction.id){
+      <tr>
+        <td>{{ transaction.transactionDate | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ transaction.value | currency: 'BRL' }}</td>
+        <td>{{ transaction.amount }}</td>
+        <td>
+          {{ transaction.totalValue | currency: 'BRL' }}
+        </td>
+        <td>
+          <button
+            class="btn"
+            [ngClass]="{
+              'btn-success': transaction.modalityId === 1,
+              'btn-danger': transaction.modalityId === 2
+            }"
+          >
+            {{ transaction.modalityId === 1 ? 'Compra' : 'Venda' }}
+          </button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+

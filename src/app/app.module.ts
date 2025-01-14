@@ -11,6 +11,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { authInterceptor } from './core/interceptors/auth-interceptor';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { authInterceptor } from './core/interceptors/auth-interceptor';
     provideHttpClient(
       withInterceptors([authInterceptor])
     ),
+    DatePipe,
     CookieService,
   ],
   bootstrap: [AppComponent]

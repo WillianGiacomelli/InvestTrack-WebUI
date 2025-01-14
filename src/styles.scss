@@ -7,7 +7,7 @@
   --nav-link-color: #333;
   --nav-link-hover-color: #007bff;
   --card-bg-color: #fff;
-  --skeleton-bg-color: linear-gradient(90deg, #fff0, #fff9, #fff0);
+  --skeleton-bg-color: #eff1f6 ;
 }
 
 :root.dark-theme {
@@ -17,7 +17,7 @@
   --nav-link-color: #ffffff;
   --nav-link-hover-color: #1e88e5;
   --card-bg-color: #424242;
-
+  --skeleton-bg-color: #5f5f5f;
 }
 
 a{
@@ -74,6 +74,9 @@ body{
   color: var(--text-color);
 }
 
-.skeleton-loader.progress:before {
-  background-image: var(--skeleton-bg-color);
+ngx-skeleton-loader {
+  > div {
+    background: var(--skeleton-bg-color) !important;
+    border-radius: 10px !important;
+  }
 }
