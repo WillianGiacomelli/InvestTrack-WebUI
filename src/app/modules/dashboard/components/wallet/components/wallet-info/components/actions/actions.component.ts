@@ -1,4 +1,5 @@
-import { Component, inject, OnInit, signal, TemplateRef, WritableSignal } from '@angular/core';
+import { TransactionHttpService } from './../../../../../../services/investments/transaction/transaction-http.service';
+import { Component, inject, Input, OnInit, signal, TemplateRef, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
@@ -11,13 +12,17 @@ import { InvestmentsBrokerHttpService } from '../../../../../../services/investm
 import { InvestmentBrokerResponse } from '../../../../../../../../core/models/investment/broker/InvestmentBrokerResponse';
 import { AssetHttpService } from '../../../../../../services/investments/asset/asset-http.service';
 import { InvestmentCategoryEnum } from '../../../../../../../../core/enums/investmentCategoryEnum';
+import Swal from 'sweetalert2';
+import { ActionBehaviorService } from '../services/action-behavior.service';
 
 @Component({
   selector: 'app-actions',
   templateUrl: './actions.component.html',
   styleUrls: ['./actions.component.scss']
 })
-export class ActionsComponent {
+export class ActionsComponent implements OnInit {
+  @Input() options: any;
+  @Input() data: any;
   public addAssetForm!: FormGroup;
   public investmentCategories: InvestmentCategoryResponse[] = [];
   public investmentBrokers: InvestmentBrokerResponse[] = [];
@@ -31,6 +36,8 @@ export class ActionsComponent {
   private _investmentsCategoryHttpService: InvestmentsCategoryHttpService = inject(InvestmentsCategoryHttpService);
   private _investmentsBrokerHttpService: InvestmentsBrokerHttpService = inject(InvestmentsBrokerHttpService);
   private _assetHttpService: AssetHttpService = inject(AssetHttpService);
+  private _transactionHttpService: TransactionHttpService = inject(TransactionHttpService);
+  private _actionBehaviorService: ActionBehaviorService = inject(ActionBehaviorService);
   public datePipe: DatePipe = inject(DatePipe);
 
 
@@ -39,8 +46,6 @@ export class ActionsComponent {
   constructor() {
     const wallet = this._walletBehaviorService.getWallet();
     const walletId = wallet![0].id;
-
-    console.log(walletId);
 
     this.addAssetForm = this._formBuilder.group({
       ticker: ['',Validators.required],
@@ -53,6 +58,43 @@ export class ActionsComponent {
     });
     this._getInvestmentCategory();
     this._getInvestmentBroker();
+  }
+  ngOnInit(): void {
+    console.log(this.options)
+
+  }
+
+  public remove(){
+    Swal.fire({
+      title: `Deseja remover a transação referete ao ativo:  ${this.data.investment.ticker}?. Também será removido dos seus investimentos.`,
+      showCancelButton: true,
+      icon: "warning",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: `Sim`,
+      cancelButtonText: `Cancelar`,
+    }).then((result) => {
+      if (!!result.isConfirmed) {
+        this._removeTransaction();
+      }
+    })
+  }
+
+  private _removeTransaction() {
+    this._transactionHttpService.removeTransactionById(this.data.id)
+      .subscribe({
+        next: (res) => {
+          this._actionBehaviorService.setIsDataChanged(true);
+          this._toastService.success('Transação removida com sucesso.', 'Sucesso',{
+            progressBar: true,
+          });
+        },
+        error: (error) => {
+          this._toastService.error(error.error.message, 'Erro',{
+            progressBar: true,
+          });
+        }
+      })
   }
 
   private _getInvestmentBroker() {

@@ -1,8 +1,25 @@
-<div class="d-flex justify-content-end mb-3">
-  <button class="btn btn-success" (click)="open(content)">
-    <i class="bi bi-plus pe-1"></i>
-    Adicionar ativo
-  </button>
+
+<div class="d-flex align-items-center w-100 mb-3 justify-content-end">
+  @if(!!data){
+      @if(options.edit) {
+        <button class="btn btn-warning" (click)="open(content)">
+          <i class="bi bi-pencil pe-1"></i>
+        </button>
+    }
+    @if (options.delete) {
+      <button class="btn btn-danger" (click)="remove()">
+        <i class="bi bi-trash pe-1"></i>
+      </button>
+  }
+  }@else {
+    @if(options.add){
+      <button class="btn btn-success" (click)="open(content)">
+        <i class="bi bi-plus pe-1"></i>
+        Adicionar ativo
+      </button>
+    }
+  }
+
 </div>
 
 

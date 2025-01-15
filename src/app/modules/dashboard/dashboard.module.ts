@@ -13,7 +13,7 @@ import { WalletInfoComponent } from './components/wallet/components/wallet-info/
 import { EmptyWalletComponent } from './components/wallet/components/empty-wallet/empty-wallet.component';
 import { ActionsComponent } from './components/wallet/components/wallet-info/components/actions/actions.component';
 import { EmptyTransactionsComponent } from './components/transactions/components/empty-transactions/empty-transactions.component';
-import { ListComponent } from './components/transactions/components/list/list.component';
+import { ListComponent } from './components/transactions/components/list/component/list.component';
 
 
 @NgModule({

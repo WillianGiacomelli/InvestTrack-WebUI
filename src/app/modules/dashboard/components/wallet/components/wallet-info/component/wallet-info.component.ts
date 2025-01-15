@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wallet-info.component.scss']
 })
 export class WalletInfoComponent implements OnInit {
-
+  public options: any = {
+    edit: false,
+    delete: false,
+    add: true,
+  }
   constructor() { }
 
   ngOnInit() {

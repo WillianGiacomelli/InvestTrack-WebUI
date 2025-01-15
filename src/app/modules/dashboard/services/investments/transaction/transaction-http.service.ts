@@ -17,4 +17,8 @@ export class TransactionHttpService {
   public getWalletTransaction(walletId: number): Observable<ApiResponse<any>> {
     return this._http.get<ApiResponse<any>>(`${this.API_URL}/investment-transaction`, { params: { walletId: walletId.toString() } });
   }
+
+  public removeTransactionById(transactionId: number): Observable<ApiResponse<any>> {
+    return this._http.delete<ApiResponse<any>>(`${this.API_URL}/investment-transaction`, { params: { transactionId: transactionId.toString() } });
+  }
 }
