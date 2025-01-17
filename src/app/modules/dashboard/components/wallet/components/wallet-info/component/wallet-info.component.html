@@ -3,7 +3,7 @@
     count="1"
     [theme]="{ 'border-radius': '0', height: '80vh', width: '100%' }"/>
 } @else {
-  <h1></h1>
+<h1>{{walletName}}</h1>
 <app-actions [options]="options"/>
 <div class="d-flex justify-content-center align-items-center w-100">
   <div class="total-amount w-100">
@@ -13,7 +13,10 @@
           <i class="bi bi-wallet2 fw-light"></i>
           <h5 class="fw-light text-gray">Saldo</h5>
         </div>
-        <h1 class="fw-light text-gray fs-5">R$ 0,00</h1>
+        <div class="d-flex align-tems-center gap-5">
+          <h1 class="fw-light text-gray fs-3">R$ {{dashboard.currentTotalValue }}</h1>
+          <p class="fs-5" [ngClass]="{'text-danger':dashboard.percentTotalVariation < 0 }">{{dashboard.percentTotalVariation.toFixed()}}%</p>
+        </div>
       </div>
     </div>
   </div>
@@ -26,7 +29,7 @@
           <i class="bi bi-piggy-bank fw-light"></i>
           <h5 class="fw-light text-gray">Total Investido</h5>
         </div>
-        <h1 class="fw-light text-gray fs-5">R$ 0,00</h1>
+        <h1 class="fw-light text-gray fs-3">R$ {{dashboard.paid}}</h1>
       </div>
     </div>
   </div>

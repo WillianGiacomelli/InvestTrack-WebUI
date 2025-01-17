@@ -13,18 +13,22 @@ export class WalletInfoComponent implements OnInit {
     delete: false,
     add: true,
   }
+  public walletName: string = '';
   public investments: any;
   public dashboard: any;
   public investmentBehaviorService: InvestmentBehaviorService = inject(InvestmentBehaviorService);
-  private walletBehaviorService: WalletBehaviorService = inject(WalletBehaviorService);
+  public walletBehaviorService: WalletBehaviorService = inject(WalletBehaviorService);
 
   constructor() { }
 
   ngOnInit() {
+    this.walletName = this.walletBehaviorService.getWallet()![0].name;
     this.investmentBehaviorService.$getInvestments()
       .subscribe((response) => {
-        this.investments = response.investments;
-        this.dashboard = response.dashboard;
+        if(!!response){
+          this.investments = response.investments;
+          this.dashboard = response.dashboard;
+        }
       });
   }
 
