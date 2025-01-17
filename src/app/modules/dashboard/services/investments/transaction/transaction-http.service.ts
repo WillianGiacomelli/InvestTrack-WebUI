@@ -21,4 +21,8 @@ export class TransactionHttpService {
   public removeTransactionById(transactionId: number): Observable<ApiResponse<any>> {
     return this._http.delete<ApiResponse<any>>(`${this.API_URL}/investment-transaction`, { params: { transactionId: transactionId.toString() } });
   }
+
+  public editTransaction(transaction: any): Observable<ApiResponse<any>> {
+    return this._http.put<ApiResponse<any>>(`${this.API_URL}/investment-transaction`, transaction);
+  }
 }

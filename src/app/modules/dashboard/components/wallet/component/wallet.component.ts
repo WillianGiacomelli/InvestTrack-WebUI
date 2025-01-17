@@ -3,16 +3,18 @@ import { ApiResponse } from '../../../../../core/models/response/ApiResponse';
 import { WalletResponse } from '../../../../../core/models/wallet/response/walletResponse';
 import { WalletBehaviorService } from '../../../services/wallet/wallet-behavior.service';
 import { WalletHttpService } from './../../../services/wallet/wallet-http.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { UserAuthenticationService } from '../../../../../shared/services/userAuthentication.service';
 import { Subject } from 'rxjs';
+import { InvestmentHttpService } from '../../../services/investments/investment-http.service';
+import { InvestmentBehaviorService } from '../../../services/investments/investment-behavior.service';
 
 @Component({
   selector: 'app-wallet',
   templateUrl: './wallet.component.html',
   styleUrls: ['./wallet.component.scss']
 })
-export class WalletComponent implements OnInit, OnDestroy {
+export class WalletComponent implements OnDestroy, OnInit {
   public title: string = 'Dashboard';
   public subtitle: string = 'Inicio';
   private _unsubscribe$ = new Subject<void>();
@@ -22,6 +24,8 @@ export class WalletComponent implements OnInit, OnDestroy {
     public walletBehaviorService: WalletBehaviorService,
     public toastService: ToastrService,
     private _userAuthenticationService: UserAuthenticationService,
+    private _investmentHttpService: InvestmentHttpService,
+    private _investmentBehaviorService: InvestmentBehaviorService
   ) { }
 
   ngOnDestroy(): void {
@@ -30,19 +34,25 @@ export class WalletComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    if(this.walletBehaviorService.getWallet() == null) this.getWallet();
+    const userId = this._userAuthenticationService.getUserAuthenticated.id;
+    if(this.walletBehaviorService.getWallet() == null) {
+      if(userId){
+        this.getWallet(userId);
+      }
+    }
 
     this.walletBehaviorService
       .getCreatedNewWallet()
       .subscribe(response =>{
         if(response){
-          this.getWallet();
+          this.getWallet(userId);
         }
     });
   }
 
-  public getWallet() {
-    this._walletHttpService.getWallet(this._userAuthenticationService.getUserAuthenticated.id)
+  public getWallet(userId: number) {
+
+    this._walletHttpService.getWallet(userId)
     .subscribe({
       next: (res:ApiResponse<WalletResponse>) => {
         if(res.data == null){
@@ -50,6 +60,7 @@ export class WalletComponent implements OnInit, OnDestroy {
           return;
         }
         this.walletBehaviorService.setWallet(res.data);
+        this._getWalletInvestments();
         this.subtitle = "Carteira"
       },
       complete: () => {
@@ -62,6 +73,22 @@ export class WalletComponent implements OnInit, OnDestroy {
         });
       }
     });
+  }
+  private _getWalletInvestments() {
+    const wallet = this.walletBehaviorService.getWallet();
+    const walletId = wallet![0].id;
+    this._investmentHttpService.getWalletInvestments(walletId)
+    .subscribe({
+      next: (res: ApiResponse<any>) => {
+        this._investmentBehaviorService.isInvestmentLoading.set(false)
+        this._investmentBehaviorService.setInvestments(res.data[0]);
+      },
+      error: (error) => {
+        this.toastService.error(error.error.message, 'Erro',{
+          progressBar: true,
+        });
+      }
+    })
   }
 }
 

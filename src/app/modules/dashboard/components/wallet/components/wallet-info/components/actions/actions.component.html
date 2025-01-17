@@ -2,7 +2,7 @@
 <div class="d-flex align-items-center w-100 mb-3 justify-content-end">
   @if(!!data){
       @if(options.edit) {
-        <button class="btn btn-warning" (click)="open(content)">
+        <button class="btn btn-warning" (click)="edit(content)">
           <i class="bi bi-pencil pe-1"></i>
         </button>
     }
@@ -25,7 +25,13 @@
 
 <ng-template #content let-modal>
 	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">Adicionar Ativo</h4>
+		<h4 class="modal-title" id="modal-basic-title">
+      @if(isEdit){
+        Editar Ativo
+      }@else {
+        Adicionar Ativo
+      }
+    </h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
@@ -167,7 +173,13 @@
 		</form>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-success" [disabled]="!addAssetForm.valid" (click)="modal.close('Save click')">Adicionar Ativo</button>
+		<button type="button" class="btn btn-success" [disabled]="!addAssetForm.valid" (click)="modal.close('Save click')">
+      @if(isEdit){
+        Editar Ativo
+      }@else {
+        Adicionar Ativo
+      }
+    </button>
     <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss('Cancel click')">Cancelar</button>
 	</div>
 </ng-template>

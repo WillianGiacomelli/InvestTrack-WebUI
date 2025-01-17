@@ -1,41 +1,50 @@
-<table class="table table-bordered table-hover">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">Ativo</th>
-      <th scope="col">Preço individual</th>
-      <th scope="col">Quantidade</th>
-      <th scope="col">Total da transação</th>
-      <th scope="col">Data da Transação</th>
-      <th scope="col">Modalidade</th>
-      <th scope="col">Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(transaction of transactions; track transaction.id){
-      <tr>
-        <td scope="row">{{ transaction.investment.ticker }}</td>
-        <td>{{ transaction.value | currency: 'BRL' }}</td>
-        <td>{{ transaction.amount }}</td>
-        <td>
-          {{ transaction.totalValue | currency: 'BRL' }}
-        </td>
-        <td scope="row">{{ transaction.transactionDate | date: 'dd/MM/yyyy' }}</td>
-        <td>
-          <button
-            class="btn"
-            [ngClass]="{
-              'btn-success': transaction.modalityId === 1,
-              'btn-danger': transaction.modalityId === 2
-            }"
-          >
-            {{ transaction.modalityId === 1 ? 'Compra' : 'Venda' }}
-          </button>
-        </td>
-        <td class="d-flex justify-content-center align-items-center">
-          <app-actions [options]="options" [data]="transaction"/>
-        </td>
-      </tr>
-    }
-  </tbody>
-</table>
+<div class="card">
+  <div class="card card-flush">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Ativo</th>
+              <th scope="col">Preço individual</th>
+              <th scope="col">Quantidade</th>
+              <th scope="col">Total da transação</th>
+              <th scope="col">Data da Transação</th>
+              <th scope="col">Modalidade</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(transaction of transactions; track transaction.id){
+              <tr>
+                <td scope="row">{{ transaction.investment.ticker }}</td>
+                <td>{{ transaction.value | currency: 'BRL' }}</td>
+                <td>{{ transaction.amount }}</td>
+                <td>
+                  {{ transaction.totalValue | currency: 'BRL' }}
+                </td>
+                <td scope="row">{{ transaction.transactionDate | date: 'dd/MM/yyyy' }}</td>
+                <td>
+                  <button
+                    class="btn"
+                    [ngClass]="{
+                      'btn-success': transaction.modalityId === 1,
+                      'btn-danger': transaction.modalityId === 2
+                    }"
+                  >
+                    {{ transaction.modalityId === 1 ? 'Compra' : 'Venda' }}
+                  </button>
+                </td>
+                <td class="d-flex justify-content-center align-items-center">
+                  <app-actions [options]="options" [data]="transaction"/>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 

@@ -40,7 +40,6 @@ export class TransactionsComponent implements OnInit {
           this.isLoadingTransactions = false;
         },
         error: (error) => {
-          console.log(error);
           this.isLoadingTransactions = false;
         }
       });

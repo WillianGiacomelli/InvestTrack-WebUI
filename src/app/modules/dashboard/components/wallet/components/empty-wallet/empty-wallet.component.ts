@@ -23,7 +23,6 @@ export class EmptyWalletComponent {
 	closeResult: WritableSignal<string> = signal('');
 
   constructor() {
-    console.log(this._userAuthenticationService.getUserAuthenticated)
     this.createWalletForm = this._formBuilder.group({
       name: ['',Validators.required],
       id: [this._userAuthenticationService.getUserAuthenticated.id],

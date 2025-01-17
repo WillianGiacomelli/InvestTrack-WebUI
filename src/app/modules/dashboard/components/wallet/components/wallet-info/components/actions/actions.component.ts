@@ -23,6 +23,7 @@ import { ActionBehaviorService } from '../services/action-behavior.service';
 export class ActionsComponent implements OnInit {
   @Input() options: any;
   @Input() data: any;
+  public isEdit: boolean = false;
   public addAssetForm!: FormGroup;
   public investmentCategories: InvestmentCategoryResponse[] = [];
   public investmentBrokers: InvestmentBrokerResponse[] = [];
@@ -60,8 +61,6 @@ export class ActionsComponent implements OnInit {
     this._getInvestmentBroker();
   }
   ngOnInit(): void {
-    console.log(this.options)
-
   }
 
   public remove(){
@@ -77,6 +76,25 @@ export class ActionsComponent implements OnInit {
       if (!!result.isConfirmed) {
         this._removeTransaction();
       }
+    })
+  }
+
+  public edit(content: TemplateRef<any>){
+    this.setDataToEdit();
+    this.investmentTypeSelected = this.data.investment.categoryId;
+    this.isEdit = true;
+    this.open(content)
+  }
+
+  private setDataToEdit(){
+    this.addAssetForm.setValue({
+      ticker: this.data.investment.ticker,
+      amount: this.data.investment.amount,
+      buyingPrice: this.data.investment.buyingPrice,
+      lastTransaction: this.data.investment.lastTransaction,
+      walletId: this.data.investment.walletId,
+      categoryId: this.data.investment.categoryId,
+      brokerId: this.data.investment.brokerId,
     })
   }
 
@@ -157,17 +175,44 @@ export class ActionsComponent implements OnInit {
   open(content: TemplateRef<any>) {
     this._modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
       (result) => {
+        if (this.isEdit) {
+          this._editAsset();
+          return;
+        }
          this._postAsset();
       }
     );
+  }
+  private _editAsset() {
+    const transaction = {
+      ...this.addAssetForm.value,
+      id: this.data.id,
+      investmentId: this.data.investment.id
+    }
+    this._transactionHttpService.editTransaction(transaction)
+      .subscribe({
+        next: (res) => {
+          this.addAssetForm.reset();
+          this._actionBehaviorService.setIsDataChanged(true);
+          this.investmentTypeSelected = null;
+          this._toastService.success('Transação editada com sucesso.', 'Sucesso',{
+            progressBar: true,
+          });
+        },
+        error: (error) => {
+          this._toastService.error(error.error.message, 'Erro',{
+            progressBar: true,
+          });
+        }
+      })
   }
 
   private _postAsset() {
     this._assetHttpService.postAsset(this.addAssetForm.value)
     .subscribe({
       next: (res) => {
-        // this._walletBehaviorService.setCreatedNewWallet(true);
         this.addAssetForm.reset();
+        this._actionBehaviorService.setIsDataChanged(true);
         this.investmentTypeSelected = null;
         this._toastService.success('Ativo adicionado com sucesso.', 'Sucesso',{
           progressBar: true,

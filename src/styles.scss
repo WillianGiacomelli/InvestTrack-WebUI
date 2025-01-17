@@ -51,6 +51,10 @@ body{
   transition: color 0.3s ease;
 }
 
+.card{
+  border: none !important;
+}
+
 .card-body{
   color: var(--text-color) !important;
   background-color: var(--card-bg-color);

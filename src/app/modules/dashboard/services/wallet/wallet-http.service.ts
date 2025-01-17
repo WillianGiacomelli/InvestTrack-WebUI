@@ -16,7 +16,7 @@ export class WalletHttpService {
   ) { }
 
   public getWallet(userId: number): Observable<ApiResponse<WalletResponse>> {
-    return this._http.get<ApiResponse<WalletResponse>>(`${this.API_URL}/wallet`, { params: { userId: userId.toString() } });
+    return this._http.get<ApiResponse<WalletResponse>>(`${this.API_URL}/wallet`, { params: { userId: userId?.toString() } });
   }
 
   public postWallet(wallet: WalletResponse): Observable<ApiResponse<WalletResponse>> {
