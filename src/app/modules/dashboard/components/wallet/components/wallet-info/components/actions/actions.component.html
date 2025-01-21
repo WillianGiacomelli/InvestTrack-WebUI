@@ -47,7 +47,7 @@
             >
             <option value="" disabled selected>Selecione o tipo de ativo</option>
             @for(categorie of investmentCategories; track categorie.id){
-                <option [value]="categorie.id">{{categorie.name}}</option>
+                <option [value]="categorie.id" [disabled]="categorie.id != 1">{{categorie.name}}</option>
               }
             </select>
             @if(addAssetForm.get('categoryId')!.hasError('required') && addAssetForm.get('categoryId')!.touched) {

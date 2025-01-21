@@ -14,6 +14,7 @@ import { EmptyWalletComponent } from './components/wallet/components/empty-walle
 import { ActionsComponent } from './components/wallet/components/wallet-info/components/actions/actions.component';
 import { EmptyTransactionsComponent } from './components/transactions/components/empty-transactions/empty-transactions.component';
 import { ListComponent } from './components/transactions/components/list/component/list.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { ListComponent } from './components/transactions/components/list/compone
     WalletInfoComponent,
     ActionsComponent,
     EmptyTransactionsComponent,
-    ListComponent
+    ListComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +37,7 @@ import { ListComponent } from './components/transactions/components/list/compone
     NgbDatepickerModule,
     NgbCollapseModule,
     SharedModule,
+    NgxChartsModule,
     NgxSkeletonLoaderModule,
   ],
   providers: [DatePipe]
