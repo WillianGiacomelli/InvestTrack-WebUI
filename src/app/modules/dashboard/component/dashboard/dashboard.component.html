@@ -7,11 +7,13 @@
       <div class="d-flex d-none d-md-flex justify-content-end w-100 mb-5 pe-md-5">
         <button class="btn btn-personalized">
           <i class="bi bi-person pe-1"></i>
-          {{userAuthenticationService.getUserAuthenticated.name.split(' ')[0]}}
+          @if(userAuthenticationService.getUserAuthenticated.name){
+            {{userAuthenticationService.getUserAuthenticated.name.split(' ')[0]}}
+          }
         </button>
       </div>
       @if(dashboardBehaviorService.toggleDashboardTab$() == 'wallet'){
-        <div class="overflow-y pe-md-5">
+        <div class="pe-md-5">
           <app-wallet/>
         </div>
       }@else {

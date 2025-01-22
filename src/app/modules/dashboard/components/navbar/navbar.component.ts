@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DashboardBehaviorService } from '../../services/dashboardBehavior.service';
 import { UserAuthenticationService } from '../../../../shared/services/userAuthentication.service';
 import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,8 @@ export class NavbarComponent {
 
   constructor(
       public dashboardBehaviorService: DashboardBehaviorService,
-      public userAuthenticationService: UserAuthenticationService
+      public userAuthenticationService: UserAuthenticationService,
+      public router: Router
   ){
 
   }
@@ -27,6 +29,7 @@ export class NavbarComponent {
       cancelButtonText: `Cancelar`,
     }).then((result) => {
       if (!!result.isConfirmed) {
+        this.router.navigate(['']);
         this.userAuthenticationService.logout();
       }
     })

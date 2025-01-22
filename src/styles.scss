@@ -78,6 +78,11 @@ body{
   color: var(--text-color);
 }
 
+.table {
+  background-color: var(--card-bg-color);
+  color: var(--text-color);
+}
+
 ngx-skeleton-loader {
   > div {
     background: var(--skeleton-bg-color) !important;

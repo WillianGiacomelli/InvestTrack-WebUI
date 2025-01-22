@@ -92,7 +92,6 @@ export class WalletComponent implements OnDestroy, OnInit {
       next: (res: ApiResponse<any>) => {
         this._investmentBehaviorService.isInvestmentLoading.set(false)
         this._investmentBehaviorService.setInvestments(res.data[0]);
-        console.log(res.data[0]);
       },
       error: (error) => {
         this.toastService.error(error.error.message, 'Erro',{

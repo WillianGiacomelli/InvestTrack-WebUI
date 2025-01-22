@@ -55,14 +55,14 @@
         </div>
       </div>
     </div>
-    <div class="d-md-flex justify-content-center align-items-center w-100 mt-2 gap-3">
-      <div class="distribution d-none d-lg-block">
-        <div class="card w-100">
+    <div class="d-md-flex justify-content-center align-items-stretch w-100 mt-2 gap-3">
+      <div class="distribution d-none d-lg-block flex-grow-1">
+        <div class="card w-100 h-100">
           <div class="card-body">
             <div class="d-flex justify-content-start gap-2 mb-3">
               <h5 class="fw-light text-gray">Distribuição dos ativos</h5>
             </div>
-            <div class="">
+            <div class="h-100 d-flex align-items-center justify-content-center">
               <ngx-charts-pie-chart
                 [view]="view"
                 [results]="chart"
@@ -77,54 +77,56 @@
         </div>
       </div>
       <div class="assets">
-        <div class="card w-100">
+        <div class="card w-100 h-100">
           <div class="card-body">
             <div class="d-flex justify-content-start gap-2 mb-3">
               <h5 class="fw-light text-gray">Ativos</h5>
             </div>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Logo</th>
-                  <th scope="col">Ativo</th>
-                  <th scope="col">Quantidade</th>
-                  <th scope="col">Valor Total</th>
-                  <th scope="col">Variação</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for(investment of displayedInvestments; track investment.id){
+            <div class="table-responsive flex-grow-1">
+              <table class="table">
+                <thead>
                   <tr>
-                    <td>
-                      <div>
-                        <img src="{{investment.logo}}" alt="" class="image-stock">
-                      </div>
-                    </td>
-                    <td>{{investment.ticker}}</td>
-                    <td>{{investment.amount}}</td>
-                    <td>R$ {{investment.currentTotalValue.toFixed(2)}}</td>
-                    <td
-                      [ngClass]="{'text-danger':investment.percentVariation < 0 ,'text-success': investment.percentVariation > 0}" >
-                        {{investment.percentVariation.toFixed(2)}}%
-                    </td>
+                    <th scope="col">Logo</th>
+                    <th scope="col">Ativo</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Valor Total</th>
+                    <th scope="col">Variação</th>
                   </tr>
-                }
-              </tbody>
-            </table>
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-end">
-                <li class="page-item" [class.disabled]="currentPage === 1">
-                  <button class="page-link" (click)="changePage(currentPage - 1)">Voltar</button>
-                </li>
-                <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
-                    [class.active]="i + 1 === currentPage">
-                  <button class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</button>
-                </li>
-                <li class="page-item" [class.disabled]="currentPage === totalPages">
-                  <button class="page-link" (click)="changePage(currentPage + 1)">Avançar</button>
-                </li>
-              </ul>
-            </nav>
+                </thead>
+                <tbody>
+                  @for(investment of displayedInvestments; track investment.id){
+                    <tr>
+                      <td>
+                        <div>
+                          <img src="{{investment.logo}}" alt="" class="image-stock">
+                        </div>
+                      </td>
+                      <td>{{investment.ticker}}</td>
+                      <td>{{investment.amount}}</td>
+                      <td>R$ {{investment.currentTotalValue.toFixed(2)}}</td>
+                      <td
+                        [ngClass]="{'text-danger':investment.percentVariation < 0 ,'text-success': investment.percentVariation > 0}" >
+                          {{investment.percentVariation.toFixed(2)}}%
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                  <li class="page-item" [class.disabled]="currentPage === 1">
+                    <button class="page-link" (click)="changePage(currentPage - 1)">Voltar</button>
+                  </li>
+                  <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index"
+                      [class.active]="i + 1 === currentPage">
+                    <button class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</button>
+                  </li>
+                  <li class="page-item" [class.disabled]="currentPage === totalPages">
+                    <button class="page-link" (click)="changePage(currentPage + 1)">Avançar</button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
         </div>
       </div>
