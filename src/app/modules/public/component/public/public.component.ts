@@ -9,7 +9,6 @@ import { UserAuthenticationService } from '../../../../shared/services/userAuthe
 export class PublicComponent implements OnInit {
 
   constructor(
-    private _userAuthenticationService: UserAuthenticationService
   ) { }
 
   ngOnInit() {

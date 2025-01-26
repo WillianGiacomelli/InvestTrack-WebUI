@@ -26,7 +26,7 @@ export class StockSectionComponent implements OnInit {
     this.getStocks();
   }
 
-  private getStocks() {
+  public getStocks() {
     this.isLoadingStocks = true;
     this._stockHttpService.getStocks()
       .subscribe({
@@ -51,7 +51,7 @@ export class StockSectionComponent implements OnInit {
       });
   }
 
-  private groupCryptos(cryptos: any[], itemsPerGroup: number): any[][] {
+  public groupCryptos(cryptos: any[], itemsPerGroup: number): any[][] {
     const groups: any[][] = [];
     for (let i = 0; i < cryptos.length; i += itemsPerGroup) {
       groups.push(cryptos.slice(i, i + itemsPerGroup));
