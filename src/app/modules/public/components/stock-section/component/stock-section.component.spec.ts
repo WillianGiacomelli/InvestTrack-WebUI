@@ -8,8 +8,7 @@ import { ApiResponse } from '../../../../../core/models/response/ApiResponse';
 import { StockQuote } from '../../../../../core/models/quote/stock/StockQuote';
 import { StockApiHttpService } from '../../../services/stock.api.http.service';
 
-// Mocks dos serviços
-jest.mock('../../../../services/stock-api-http.service');
+jest.mock('../../../services/stock.api.http.service');
 jest.mock('ngx-toastr');
 
 describe('StockSectionComponent', () => {

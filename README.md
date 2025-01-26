@@ -3,6 +3,18 @@
 
 Este projeto é o frontend da aplicação **InvestTrack-API**, desenvolvido com o framework **Angular**. A aplicação interage com a API para gerenciar investimentos, transações e usuários.
 
+
+## Pré-visualização da aplicação
+<p align="center">
+  <img src="./src//assets/docs/gif/invest-git.gif" width="500">
+</p>
+
+<p align="center">
+  <img src="./src/assets/docs/image/1.png" width="300">
+  <img src="./src/assets/docs/image/2.png" width="300">
+  <img src="./src/assets/docs/image/3.png" width="100">
+</p>
+
 ## Tecnologias Utilizadas
 
 - **Angular**: Framework para construção da interface de usuário.
